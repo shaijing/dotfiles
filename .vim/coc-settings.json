@@ -62,6 +62,7 @@
         "cpp",
         "markdown",
         "lua",
+        "sh",
         "bash"
     ],
     "snippets.ultisnips.directories": [

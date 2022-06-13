@@ -9,6 +9,8 @@ git init --bare $HOME/.dotfiles
 vim ~/.zshrc
 alias dotfiles='git --git-dir $HOME/.dotfiles/ --work-tree $HOME'
 source ~/.zshrc
+# 默认不跟踪任何文件
+dotfiles config --local status.showUntrackedFiles no
 ```
 
 # 2 use
