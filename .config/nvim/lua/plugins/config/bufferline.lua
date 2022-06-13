@@ -10,8 +10,8 @@ bufferline.setup({
     mode = "buffers", -- set to "tabs" to only show tabpages instead
     -- 关闭 Tab 的命令
     close_command = "bdelete! %d",
-    left_mouse_command = "bdelete! %d", -- close tab
-    right_mouse_command = "buffer %d",
+    right_mouse_command = "bdelete! %d", -- close tab
+    left_mouse_command = "buffer %d",
     middle_mouse_command = nil,
     -- NOTE: this plugin is designed with this icon in mind,
     -- and so changing this is NOT recommended, this is intended

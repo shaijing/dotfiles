@@ -21,7 +21,6 @@ set wrap                     " 自动折行，即太长的行分成几行显示�
 set linebreak                " 只有遇到指定的符号（比如空格、连词号和其他标点符号），才发生折行。也就是说，不会在单词内部折行。
 set laststatus=2             " 是否显示状态栏。0 表示不显示 1表示只在多窗口时显示 2表示显示。两行状态行+一行命令行
 set ruler                    " 在状态栏显示光标的当前位置（位于哪一行哪一列）。
-set bg=dark                  " 背景颜色
 set hlsearch                 " 高亮度反白
 set incsearch
 set clipboard+=unnamed       " 共享剪贴板
@@ -34,8 +33,8 @@ set virtualedit=block,onemore   " 允许光标出现在最后一个字符的后�
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 主题设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-colorscheme desert
-
+autocmd vimenter * ++nested colorscheme gruvbox
+set bg=dark                  " 背景颜色
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 代码缩进与排版
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -74,6 +73,8 @@ func! CompileRunGcc()
   if &filetype == 'c'
     exec "!gcc % -o %<"
     exec "!time ./%<"
+  elseif &filetype == 'lua'
+    exec "!time lua ./%"
   elseif &filetype == 'cpp'
     exec "!g++ -ltensorflow % -o %<"
     exec "!time ./%<"
@@ -133,7 +134,10 @@ call plug#begin('~/.vim/plugged')
 let g:plug_url_format = 'git@github.com:%s.git'
 " nerdtree
 Plug 'scrooloose/nerdtree'
-Plug 'altercation/solarized'
+
+"theme
+Plug 'shaijing/gruvbox'
+
 "快速打开大文件
 Plug 'vim-scripts/LargeFile'
 Plug 'itchyny/lightline.vim'

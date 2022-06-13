@@ -7,7 +7,7 @@ if not status then
 end
 
 -- 列表操作快捷键
-local list_keys = require("keybindings").nvimTreeList
+local list_keys = require("basic.keybindings").nvimTreeList
 
 nvim_tree.setup({
   auto_reload_on_write = true,

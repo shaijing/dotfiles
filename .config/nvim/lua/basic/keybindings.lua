@@ -123,11 +123,11 @@ map("n", "Z", ":foldopen<CR>", opt)
 
 -- nvim-tree
 map("n", "<A-m>", ":NvimTreeToggle<CR>", opt)
-map("n","<leader>r",":NvimTreeRefresh<CR>",opt)
-map("n","<leader>n",":NvimTreeFindFile<CR>",opt)
+map("n", "<leader>r", ":NvimTreeRefresh<CR>", opt)
+map("n", "<leader>n", ":NvimTreeFindFile<CR>", opt)
 -- 列表快捷键
 pluginKeys.nvimTreeList = { -- 打开文件或文件夹
-  { key = {"<CR>", "o", "<2-LeftMouse>" }, action = "edit" },
+  { key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },
   --{ key = "<CR>", action = "system_open" },
   -- v分屏打开文件
   { key = "v", action = "vsplit" },
@@ -279,11 +279,11 @@ pluginKeys.mapDAP = function()
     "n",
     "<leader>de",
     ":lua require'dap'.close()<CR>"
-      .. ":lua require'dap'.terminate()<CR>"
-      .. ":lua require'dap.repl'.close()<CR>"
-      .. ":lua require'dapui'.close()<CR>"
-      .. ":lua require('dap').clear_breakpoints()<CR>"
-      .. "<C-w>o<CR>",
+    .. ":lua require'dap'.terminate()<CR>"
+    .. ":lua require'dap.repl'.close()<CR>"
+    .. ":lua require'dapui'.close()<CR>"
+    .. ":lua require('dap').clear_breakpoints()<CR>"
+    .. "<C-w>o<CR>",
     opt
   )
   -- 继续

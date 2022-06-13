@@ -38,7 +38,7 @@ cmp.setup({
   }, { { name = "path" } }),
 
   -- 快捷键
-  mapping = require("keybindings").cmp(cmp),
+  mapping = require("basic.keybindings").cmp(cmp),
   -- 使用lspkind-nvim显示类型图标
   formatting = require("plugins.config.lspui").formatting,
 })

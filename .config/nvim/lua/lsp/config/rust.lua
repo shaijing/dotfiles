@@ -11,7 +11,7 @@ local lspconfig_opts = {
       vim.api.nvim_buf_set_keymap(bufnr, ...)
     end
     -- 绑定快捷键
-    require("keybindings").mapLSP(buf_set_keymap)
+    require("basic.keybindings").mapLSP(buf_set_keymap)
   end,
   settings = {
     -- to enable rust-analyzer settings visit:

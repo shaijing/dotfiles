@@ -12,7 +12,8 @@ return {
           ---@diagnostic disable-next-line: missing-parameter
           vim.api.nvim_buf_set_keymap(bufnr, ...)
         end
-        require("keybindings").mapLSP(buf_set_keymap)
+
+        require("basic.keybindings").mapLSP(buf_set_keymap)
       end,
     })
   end,

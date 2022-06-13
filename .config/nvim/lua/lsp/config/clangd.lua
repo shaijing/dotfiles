@@ -1,9 +1,9 @@
-local util = require ("lspconfig.util")
+local util = require("lspconfig.util")
 local root_pattern = util.root_pattern("compile_commands.json", "compile_flags.txt", ".git", "CMakeLists.txt", "src");
 local opts = {
 	cmd = {
-    "clangd",     -- NOTE: 只支持clangd 13.0.0 及其以下版本，新版本会有问题
-    "--background-index", -- 后台建立索引，并持久化到disk
+		"clangd", -- NOTE: 只支持clangd 13.0.0 及其以下版本，新版本会有问题
+		"--background-index", -- 后台建立索引，并持久化到disk
 		"--clang-tidy", -- 开启clang-tidy
 		-- 指定clang-tidy的检查参数， 摘抄自cmu15445. 全部参数可参考 https://clang.llvm.org/extra/clang-tidy/checks
 		"--clang-tidy-checks=bugprone-*, clang-analyzer-*, google-*, modernize-*, performance-*, portability-*, readability-*, -bugprone-too-small-loop-variable, -clang-analyzer-cplusplus.NewDelete, -clang-analyzer-cplusplus.NewDeleteLeaks, -modernize-use-nodiscard, -modernize-avoid-c-arrays, -readability-magic-numbers, -bugprone-branch-clone, -bugprone-signed-char-misuse, -bugprone-unhandled-self-assignment, -clang-diagnostic-implicit-int-float-conversion, -modernize-use-auto, -modernize-use-trailing-return-type, -readability-convert-member-functions-to-static, -readability-make-member-function-const, -readability-qualified-auto, -readability-redundant-access-specifiers,",
@@ -19,34 +19,34 @@ local opts = {
 		"--header-insertion-decorators",
 		"-j=12",
 		"--pretty",
-    },
-	filetypes={
- 		"c", "cpp", "objc", "objcpp", "cuda"
+	},
+	filetypes = {
+		"c", "cpp", "objc", "objcpp", "cuda"
 	},
 	single_file_support = true,
 	root_dir = function(fname)
-    	local filename = util.path.is_absolute(fname) and fname or util.path.join(vim.loop.cwd(), fname)
-    	return root_pattern(filename)
-  	end,
-    on_attach = function(client, bufnr)
-        -- 禁用格式化功能，交给专门插件插件处理
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
+		local filename = util.path.is_absolute(fname) and fname or util.path.join(vim.loop.cwd(), fname)
+		return root_pattern(filename)
+	end,
+	on_attach = function(client, bufnr)
+		-- 禁用格式化功能，交给专门插件插件处理
+		client.resolved_capabilities.document_formatting = false
+		client.resolved_capabilities.document_range_formatting = false
 
-        local function buf_set_keymap(...)
-            vim.api.nvim_buf_set_keymap(bufnr, ...)
-        end
+		local function buf_set_keymap(...)
+			vim.api.nvim_buf_set_keymap(bufnr, ...)
+		end
 
-        -- 绑定快捷键
-        require('basic.keybindings').mapLSP(buf_set_keymap)
-        -- 保存时自动格式化
-        --vim.cmd('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()')
-    end,
+		-- 绑定快捷键
+		require('basic.keybindings').mapLSP(buf_set_keymap)
+		-- 保存时自动格式化
+		--vim.cmd('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()')
+	end,
 }
 
 -- 查看目录等信息
 return {
-    on_setup = function(server)
-        server:setup(opts)
-    end,
+	on_setup = function(server)
+		server:setup(opts)
+	end,
 }
